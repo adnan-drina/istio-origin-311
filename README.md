@@ -68,3 +68,37 @@
 		$ oc new-project istio-operator
 		$ oc new-app -f https://raw.githubusercontent.com/adnan-drina/istio-origin-311/master/istio_operator_template_origin.yaml
 	```
+7. To deploy the control plane, run the following command:
+	```
+		$ oc create -f https://raw.githubusercontent.com/adnan-drina/istio-origin-311/master/istio-install.yaml -n istio-operator
+	```
+
+8. Verifying the installation
+	After the openshift-ansible-istio-installer-job has completed, run the following command:
+	```
+		$ oc get pods -n istio-system
+	```
+	Verify that you have a state similar to the following:
+	```
+		NAME                                          READY     STATUS      RESTARTS   AGE
+		elasticsearch-0                               1/1       Running     0          2m
+		grafana-6887dd6bd6-rqh8b                      1/1       Running     0          2m
+		istio-citadel-55df4f4fcd-4bkd7                1/1       Running     0          3m
+		istio-egressgateway-7c8fc8c488-cl8l2          1/1       Running     0          3m
+		istio-galley-5988bfff67-q6pn8                 1/1       Running     0          3m
+		istio-ingressgateway-6985bccb6c-kxbl5         1/1       Running     0          3m
+		istio-pilot-6dc5cffcf5-q2f88                  2/2       Running     0          3m
+		istio-policy-5c5d47ccf4-z77nl                 2/2       Running     0          3m
+		istio-sidecar-injector-c568c7959-8b6x5        1/1       Running     0          3m
+		istio-telemetry-9bc946ccc-j4d29               2/2       Running     0          3m
+		jaeger-agent-cxr5p                            1/1       Running     0          2m
+		jaeger-collector-565dffbb9b-f67v6             1/1       Running     1          2m
+		jaeger-query-6bb87dcb78-jjbwj                 1/1       Running     1          2m
+		kiali-594cbc76f8-8rhvg                        1/1       Running     0          2m
+		openshift-ansible-istio-installer-job-6hwqm   0/1       Error       0          6m
+		openshift-ansible-istio-installer-job-mlzht   0/1       Error       0          6m
+		openshift-ansible-istio-installer-job-trs2d   0/1       Completed   0          5m
+		prometheus-76db5fddd5-txmlm                   1/1       Running     0          3m
+	```
+
+ref: https://docs.openshift.com/container-platform/3.11/servicemesh-install/servicemesh-install.html
