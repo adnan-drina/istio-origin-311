@@ -17,7 +17,7 @@ spec:
     username: kiali
     password: kiali
     prefix: kiali/
-    version: v0.12
+    version: v0.12.0
   launcher:
     openshift:
       user: developer
