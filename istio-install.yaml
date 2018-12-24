@@ -8,7 +8,7 @@ spec:
     authentication: true
     community: false
     prefix: maistra/
-    version: 0.6.0
+    version: 0.5.0
   jaeger:
     prefix: jaegertracing/
     version: 1.8
