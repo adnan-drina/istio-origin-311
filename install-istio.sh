@@ -117,7 +117,7 @@ oc adm policy add-cluster-role-to-user cluster-admin admin
 
 header_text "Upgrade the node configuretion"
 NODE=$(docker ps -f name=origin --format "{{.ID}}")
-docker cp ./JavaProjects/openshift-templates/istio/99-elasticsearch.conf $NODE:/etc/sysctl.d/99-elasticsearch.conf
+docker cp https://raw.githubusercontent.com/adnan-drina/istio-origin-311/master/99-elasticsearch.conf $NODE:/etc/sysctl.d/99-elasticsearch.conf
 docker exec -it $NODE sysctl vm.max_map_count=262144
 
 header_text "Setting up the istio operator"
@@ -125,7 +125,7 @@ oc new-project istio-operator
 oc new-app -f https://raw.githubusercontent.com/adnan-drina/istio-origin-311/master/istio_operator_template_origin.yaml
 
 header_text "Installing istio components"
-oc create -f https://raw.githubusercontent.com/adnan-drina/istio-origin-311/master/istio-install.yaml -n istio-operator
+oc create -f https://raw.githubusercontent.com/adnan-drina/istio-origin-311/master/istio-installation.yaml -n istio-operator
 
 header_text "Waiting for components to become ready"
 sleep 5; while echo && oc get pods -n istio-system | grep -v -E "(Running|Completed|STATUS)"; do sleep 5; done
